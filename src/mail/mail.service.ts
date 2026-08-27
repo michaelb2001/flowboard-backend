@@ -66,5 +66,6 @@ Se non hai richiesto tu questa operazione, puoi ignorare questa email.`,
     'Impossibile inviare l email di recupero password',
   );
 }
+
   }
 }
