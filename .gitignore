@@ -44,7 +44,7 @@ lerna-debug.log*
 .env.*
 !.env.example
 
-
+ca.pem
 # temp directory
 .temp
 .tmp

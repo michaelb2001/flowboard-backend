@@ -1,6 +1,9 @@
 import 'dotenv/config';
 import { DataSource } from 'typeorm';
 
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 export default new DataSource({
   type: 'mysql',
 
@@ -9,6 +12,11 @@ export default new DataSource({
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
+
+
+  ssl: {
+    ca: readFileSync(join(process.cwd(), 'ca.pem')),
+  },
 
   entities: ['src/**/*.entity.ts'],
 
