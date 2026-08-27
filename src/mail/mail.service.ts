@@ -60,9 +60,11 @@ Se non hai richiesto tu questa operazione, puoi ignorare questa email.`,
     });
 
     if (error) {
-      throw new InternalServerErrorException(
-        'Impossibile inviare l email di recupero password',
-      );
-    }
+  console.error('RESEND ERROR:', error);
+
+  throw new InternalServerErrorException(
+    'Impossibile inviare l email di recupero password',
+  );
+}
   }
 }
