@@ -19,7 +19,9 @@ import { TasksModule } from './tasks/tasks.module';
       inject: [ConfigService],
 
       useFactory: (configService: ConfigService) => {
-        const sslCa = configService.get<string>('DB_SSL_CA');
+        const caPath = process.env.RENDER
+          ? '/etc/secrets/ca.pem'
+          : join(process.cwd(), 'ca.pem');
 
         return {
           type: 'mysql',
@@ -31,7 +33,7 @@ import { TasksModule } from './tasks/tasks.module';
           database: configService.getOrThrow<string>('DB_DATABASE'),
 
           ssl: {
-            ca: sslCa ?? readFileSync(join(process.cwd(), 'ca.pem')),
+            ca: readFileSync(caPath),
           },
 
           autoLoadEntities: true,
